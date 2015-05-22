@@ -85,38 +85,12 @@ module Capybara::Webkit
       @browser.error_messages
     end
 
-    def alert_messages
-      warn '[DEPRECATION] Capybara::Webkit::Driver#alert_messages ' \
-        'is deprecated. Please use Capybara::Session#accept_alert instead.'
-      @browser.alert_messages
-    end
-
-    def confirm_messages
-      warn '[DEPRECATION] Capybara::Webkit::Driver#confirm_messages ' \
-        'is deprecated. Please use Capybara::Session#accept_confirm ' \
-        'or Capybara::Session#dismiss_confirm instead.'
-      @browser.confirm_messages
-    end
-
-    def prompt_messages
-      warn '[DEPRECATION] Capybara::Webkit::Driver#prompt_messages ' \
-        'is deprecated. Please use Capybara::Session#accept_prompt ' \
-        'or Capybara::Session#dismiss_prompt instead.'
-      @browser.prompt_messages
-    end
-
     def response_headers
       @browser.response_headers
     end
 
     def status_code
       @browser.status_code
-    end
-
-    def resize_window(width, height)
-      warn '[DEPRECATION] Capybara::Webkit::Driver#resize_window ' \
-        'is deprecated. Please use Capybara::Window#resize_to instead.'
-      resize_window_to(current_window_handle, width, height)
     end
 
     def resize_window_to(handle, width, height)
@@ -168,40 +142,6 @@ module Capybara::Webkit
 
     def maximize_window(selector)
       @browser.window_maximize(selector)
-    end
-
-    def accept_js_confirms!
-      warn '[DEPRECATION] Capybara::Webkit::Driver#accept_js_confirms! ' \
-        'is deprecated. Please use Capybara::Session#accept_confirm instead.'
-      @browser.accept_js_confirms
-    end
-
-    def dismiss_js_confirms!
-      warn '[DEPRECATION] Capybara::Webkit::Driver#dismiss_js_confirms! ' \
-        'is deprecated. Please use Capybara::Session#dismiss_confirm instead.'
-      @browser.reject_js_confirms
-    end
-
-    def accept_js_prompts!
-      warn '[DEPRECATION] Capybara::Webkit::Driver#accept_js_prompts! ' \
-        'is deprecated. Please use Capybara::Session#accept_prompt instead.'
-      @browser.accept_js_prompts
-    end
-
-    def dismiss_js_prompts!
-      warn '[DEPRECATION] Capybara::Webkit::Driver#dismiss_js_prompts! ' \
-        'is deprecated. Please use Capybara::Session#dismiss_prompt instead.'
-      @browser.reject_js_prompts
-    end
-
-    def js_prompt_input=(value)
-      warn '[DEPRECATION] Capybara::Webkit::Driver#js_prompt_input= ' \
-        'is deprecated. Please use Capybara::Session#accept_prompt instead.'
-      if value.nil?
-        @browser.clear_prompt_text
-      else
-        @browser.set_prompt_text_to(value)
-      end
     end
 
     def go_back
@@ -305,11 +245,6 @@ module Capybara::Webkit
 
     def timeout=(timeout)
       @browser.timeout = timeout
-    end
-
-    def browser
-      warn "[DEPRECATION] Capybara::Webkit::Driver#browser is deprecated."
-      @browser
     end
 
     private
